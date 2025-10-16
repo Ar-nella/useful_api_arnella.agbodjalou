@@ -10,23 +10,24 @@ class ModuleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function modules()
+    {
+        //
+
+    }
+
+    /**
+     * A function to activate a module.
+     */
+    public function activate()
     {
         //
     }
 
     /**
-     * Show the form for creating a new resource.
+     * A function to deactivate a module.
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function deactivate()
     {
         //
     }
