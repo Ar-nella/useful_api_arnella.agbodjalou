@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -30,6 +31,38 @@ class AuthenticationController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
+        DB::table('user_modules')->insert([
+            [
+                'user_id' => $user->id,
+                'module_id' => 1,
+                'active' => 0
+            ],
+
+            [
+                'user_id' => $user->id,
+                'module_id' => 2,
+                'active' => 0
+            ],
+
+            [
+                'user_id' => $user->id,
+                'module_id' => 3,
+                'active' => 0
+            ],
+
+            [
+                'user_id' => $user->id,
+                'module_id' => 4,
+                'active' => 0
+            ],
+
+            [
+                'user_id' => $user->id,
+                'module_id' => 5,
+                'active' => 0
+            ],
+        ]);
+
 
         // if(!$user){
         //     throw ValidationException::withMessages([
@@ -59,17 +92,17 @@ class AuthenticationController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!Auth::attempt($request->only('email', 'password'))) {
-            throw ValidationException::withMessages([
-                'email' => ['Invalid credentials'],
-            ]);
-            return response()->json([ 'status_message' => 'Invalid credentials'], 401);
+            // throw ValidationException::withMessages([
+            //     'email' => ['Invalid credentials'],
+            // ]);
+            return response()->json(['status_message' => 'Invalid credentials'], 401);
         }
 
         $token = $user->createToken('API token')->plainTextToken;
 
         return response()->json([
             'token' => $token,
-            'user_id'=>$user->id
+            'user_id' => $user->id
         ], 200);
     }
 
