@@ -5,8 +5,8 @@ console.log("loginView");
 
 const authStore = useAuthStore();
 
-const email = ref("null");
-const password = ref("null");
+const email = ref('');
+const password = ref('');
 
 console.log("email", email.value)
 console.log("password", password.value)

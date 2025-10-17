@@ -3,8 +3,8 @@ import { authModel } from "@/services/authService";
 
 
 export const useAuthStore = defineStore('users',{
-    state: {
-        userData: {},
+    state: () =>{
+        userData: {}
         userToken: null
 
     },
