@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ModuleController extends Controller
 {
@@ -13,6 +14,11 @@ class ModuleController extends Controller
     public function modules()
     {
         //
+        $modules = DB::select('select * from modules');
+
+        return response()->json([
+            $modules
+        ]);
 
     }
 
